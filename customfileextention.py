@@ -4,6 +4,7 @@ from tkinter import filedialog
 import os
 # from PIL import Image, ImageTk
 
+filepath = ""
 
 def browse():
     filename = filedialog.askopenfilename(initialdir="/",
@@ -15,9 +16,10 @@ def browse():
         popuperror()
     else:
         outputtext.configure(text=filename)
+        filepath = filename
 
 def preview():
-    with open(filename, "r") as file:
+    with open(filepath, "r") as file:
         content = file.read()
         ###
 
@@ -142,7 +144,7 @@ tk.LabelFrame(root,
               text="",
               bg="cyan",
               width="330",
-              height="350",
+              height="360",
               ).place(x=350, y=20)
 
 
