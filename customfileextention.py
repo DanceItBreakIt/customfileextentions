@@ -46,7 +46,7 @@ def popuperror():
 
 invalidfileformats = ("jpg", "png", "gif", "bmp", "tiff", "psd", "mp4", "mkv", "avi", "mov", "mpg", "vob", "mp3", "aac", "wav", "flac", "ogg", "mka", "wma",
                       "m4a", "pdf", "doc", "xls", "ppt", "docx", "odt", "zip", "rar", "7z", "tar", "iso", "mdb", "accde", "frm", "sqlite", "exe", "dll", 
-                      "so", "class")
+                      "so", "class", "jpeg")
 
 
 root = tk.Tk()
