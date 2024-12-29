@@ -4,7 +4,7 @@ from tkinter import filedialog
 import os
 # from PIL import Image, ImageTk
 
-filepath = ""
+filepath = "" # creates filepath variable
 
 def browse():
     filename = filedialog.askopenfilename(initialdir="/",
@@ -15,13 +15,21 @@ def browse():
     if extention != ".txt":
         popuperror()
     else:
-        outputtext.configure(text=filename)
+        global filepath
         filepath = filename
+        outputtext.configure(text=filepath)
 
 def preview():
-    with open(filepath, "r") as file:
-        content = file.read()
-        ###
+    file = open(file=filepath, mode="r")
+    content = file.read()
+    previewtextfile.configure(text=f"Preview:\n{content}")
+
+def convert():
+    global customext
+    for type in invalidfileformats:
+        if customext == invalidfileformats[type]:
+            break
+    if any(invalidsymbols in customext) for 
 
 def popuperror():
     popup = tk.Tk()
@@ -44,10 +52,11 @@ def popuperror():
     popup.after(1000, popup.destroy)
     popup.mainloop()
 
-invalidfileformats = ("jpg", "png", "gif", "bmp", "tiff", "psd", "mp4", "mkv", "avi", "mov", "mpg", "vob", "mp3", "aac", "wav", "flac", "ogg", "mka", "wma",
+invalidfileformats = ("jpg", "png", "gif", "bmp", "ico", "tiff", "psd", "mp4", "mkv", "avi", "mov", "mpg", "vob", "mp3", "aac", "wav", "flac", "ogg", "mka", "wma",
                       "m4a", "pdf", "doc", "xls", "ppt", "docx", "odt", "zip", "rar", "7z", "tar", "iso", "mdb", "accde", "frm", "sqlite", "exe", "dll", 
                       "so", "class", "jpeg")
 
+invalidsymbols = set(".,<>:\"/\|\?\*'")
 
 root = tk.Tk()
 root.title('Custom File Extentions!')
@@ -119,6 +128,7 @@ tk.Entry(root,
          ).place(x=60, y=295)
 tk.Button(root,
           text="Convert",
+          command=convert,
           bg="green",
           font=("Comic Sans MS", 15),
           activebackground="darkgreen",
@@ -140,12 +150,17 @@ tk.Button(root,
           relief="flat",
           overrelief="raised",
           ).place(x=140, y=325)
-tk.LabelFrame(root,
-              text="",
-              bg="cyan",
-              width="330",
-              height="360",
-              ).place(x=350, y=20)
+previewtextfile = tk.LabelFrame(root,
+                                text="Preview:\n",
+                                bg="cyan",
+                                width="330",
+                                height="360",
+                                borderwidth="0",
+                                )
+previewtextfile.place(x=350, y=20)
+# tk.Label(root,
+    #     text="(may not always display correctly)",
+     #    ).
 
 
 root.mainloop()
